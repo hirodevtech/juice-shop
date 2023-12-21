@@ -1,7 +1,7 @@
 name: Example workflow using Snyk
 on: push
 jobs:
-  security:
+  security-1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -12,7 +12,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
-  security:
+  security-2:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -21,17 +21,17 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-  security:
+  security-3:
     runs-on: ubuntu-latest
     steps:
-    - name: Run Snyk to check Docker image for vulnerabilities
-      continue-on-error: true
-      uses: snyk/actions/docker@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        image: your/image-to-monitor
-  snyk:
+      - name: Run Snyk to check Docker image for vulnerabilities
+        continue-on-error: true
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: your/image-to-monitor
+  security-4:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
