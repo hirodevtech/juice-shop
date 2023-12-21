@@ -5,15 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Setup .NET
-        uses: actions/setup-dotnet@3.1.0
-      - name: Restore dependencies
-        run: dotnet restore ./path/to/your.sln
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/dotnet@master
         continue-on-error: true
+        uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          command: monitor
   security-node:
     runs-on: ubuntu-latest
     steps:
@@ -33,13 +30,14 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: your/image-to-monitor
+          command: monitor
   security-iac:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run Snyk to check Kubernetes manifest file for issues
-        uses: snyk/actions/iac@master
         continue-on-error: true
+        uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
