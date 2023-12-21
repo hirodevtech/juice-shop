@@ -12,10 +12,6 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
-
-name: Example workflow for Node using Snyk
-on: push
-jobs:
   security:
     runs-on: ubuntu-latest
     steps:
@@ -25,10 +21,6 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-name: Example workflow for Docker using Snyk
-on: push
-jobs:
   security:
     runs-on: ubuntu-latest
     steps:
@@ -39,10 +31,6 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: your/image-to-monitor
-
-name: Snyk Infrastructure as Code
-on: push
-jobs:
   snyk:
     runs-on: ubuntu-latest
     steps:
